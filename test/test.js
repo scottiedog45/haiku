@@ -27,8 +27,11 @@ function generateTitle() {
 }
 
 function generateLines() {
-	const lines = [
-	'A', 'B', 'C'];
+	const lines = {
+		'lineOne': 'A',
+		'lineTwo': 'B',
+		'lineThree': 'C'
+	};
 	return lines[Math.floor(Math.random() * lines.length)];
 }
 
