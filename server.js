@@ -2,7 +2,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
-const {TEST_DATABASE_URL, PORT} = require('./config');
+const {DATABASE_URL, PORT} = require('./config');
 const {Haiku} = require ('./models');
 const app = express();
 
@@ -92,7 +92,7 @@ app.use('*', function (req, res) {
 
 let server;
 
-function runServer(databaseUrl=TEST_DATABASE_URL, port=PORT) {
+function runServer(databaseUrl=DATABASE_URL, port=PORT) {
 	return new Promise((resolve, reject) => {
 		mongoose.connect(databaseUrl, err => {
 			if (err) {
