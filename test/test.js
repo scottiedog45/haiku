@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const should = chai.should();
 const {Haiku} = require('../models');
 const {app, runServer, closeServer} = require('../server');
-const {DATABASE_URL} = require('../config');
+const {TEST_DATABASE_URL} = require('../config');
 
 var server = require('../server.js')
 var storage = server.storage;
@@ -49,7 +49,7 @@ function tearDownDb() {
 
 describe('haiku API resource', function() {
 	before(function() {
-		return runServer(DATABASE_URL);
+		return runServer(TEST_DATABASE_URL);
 	});
 
 	beforeEach(function(){
