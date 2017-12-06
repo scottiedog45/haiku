@@ -62,7 +62,7 @@ describe('haiku API resource', function() {
 	})
 
 	describe('GET endpoint', function () {
-		it('should return all existing notes', function() {
+		it('should return all existing haikus', function() {
 			let rest;
 			return chai.request(app)
 			.get('./haikus')
@@ -75,12 +75,12 @@ describe('haiku API resource', function() {
 			.then(function(count){
 				res.body.haikus.should.have.length.of(count);
 			})
-			.cath(err=>{
+			.catch(err=>{
 				console.error(err);
 			});
 		});
 
-		it('should return notes with correct fields', function(){
+		it('should return haikus with correct fields', function(){
 			let resHaiku;
 			return chai.request(app)
 				.get('/haikus')
