@@ -24,7 +24,7 @@ function seedHaikuData() {
 function generateTitle() {
 	const titles =[
 	'A', 'B', 'C'];
-	return titles.[Math.floor(Math.random() * titles.length)];
+	return titles[Math.floor(Math.random() * titles.length)];
 }
 
 function generateLines() {
