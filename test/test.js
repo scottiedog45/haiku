@@ -63,7 +63,7 @@ describe('haiku API resource', function() {
 	})
 
 	describe('GET endpoint', function () {
-		it('should return all existing notes', function {
+		it('should return all existing notes', function() {
 			let rest;
 			return chai.request(app)
 			.get('./haikus')
