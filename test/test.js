@@ -106,5 +106,7 @@ describe('haiku API resource', function() {
 		});
 });
 
+});
+
 
 
