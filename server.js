@@ -2,7 +2,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
-const {DATABASE_URL, PORT} = require('./config');
+const {TEST_DATABASE_URL, PORT} = require('./config');
 const {Haiku} = require ('./models');
 const app = express();
 
@@ -28,8 +28,9 @@ app.get('/haikus', (req, res) => {
 
 app.post('/haikus', (req, res) => {
 	const requiredFields = ['title', 'lines', 'author'];
+	console.log(req);
 	for (let i=0; i<requiredFields.length; i++) {
-		const field = requiredfields[i];
+		const field = requiredFields[i];
 		if(!(field in req.body)) {
 			const message = `Missing \`${field}\` in request body`;
 			console.error(message);
@@ -41,9 +42,9 @@ app.post('/haikus', (req, res) => {
 		.create({
 			title: req.body.title,
 			lines: {
-				lineOne: req.body.content.lineOne,
-				lineTwo: req.body.content.lineTwo,
-				lineThree: req.body.content.lineThree
+				lineOne: req.body.lines.lineOne,
+				lineTwo: req.body.lines.lineTwo,
+				lineThree: req.body.lines.lineThree
 			},
 			author: req.body.author
 		})
@@ -55,7 +56,7 @@ app.post('/haikus', (req, res) => {
 		});
 });
 
-app.put('notes/:id', (req, res)=> {
+app.put('/haikus/:id', (req, res)=> {
 	if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
 		res.status(400).json({
 			error: 'Request path id and request body id values must match'
@@ -63,7 +64,7 @@ app.put('notes/:id', (req, res)=> {
 	}
 
 	const updated = {};
-	const updateableFields = ['title', 'content'];
+	const updateableFields = ['title', 'content', 'author'];
 	updateableFields.forEach(field=> {
 		if (field in req.body) {
 			updated[field]=req.body[field];
@@ -91,7 +92,7 @@ app.use('*', function (req, res) {
 
 let server;
 
-function runServer(databaseUrl=DATABASE_URL, port=PORT) {
+function runServer(databaseUrl=TEST_DATABASE_URL, port=PORT) {
 	return new Promise((resolve, reject) => {
 		mongoose.connect(databaseUrl, err => {
 			if (err) {
