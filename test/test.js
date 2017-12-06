@@ -91,7 +91,7 @@ describe('haiku API resource', function() {
 					res.body.should.be.a('array');
 					res.body.should.have.length.of.at.least(1);
 					res.body.forEach(function(haiku) {
-						haiku.should.be.a.('object');
+						haiku.should.be.a('object');
 						haiku.should.include.keys(
 							'title', 'lines', 'created');
 					});
@@ -104,7 +104,7 @@ describe('haiku API resource', function() {
 					resHaiku.lines.should.equal(haiku.lines);
 				});
 		});
-	});
+});
 
 
 
