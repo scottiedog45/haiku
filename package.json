@@ -3,12 +3,10 @@
   "version": "1.0.0",
   "description": "the worst haiku game",
   "main": "server.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
-    "test": "test",
-    "start": "node server.js"
+    "test": "mocha --exit",
+    "start": "node server.js",
+    "watch": "nodemon server.js"
   },
   "repository": {
     "type": "git",
