@@ -26,19 +26,44 @@ function generateTitle() {
 	return titles[Math.floor(Math.random() * titles.length)];
 }
 
+function generateAuthor() {
+	const authors=[
+	'a', 'b', 'c'];
+	return authors[Math.floor(Math.random() * authors.length)];
+}
+
+function generateLineOne () {
+	const lineOnes = [
+	'a', 'b', 'c'];
+	return lineOnes[Math.floor(Math.random() * lineOnes.length)];
+};
+
+function generateLineTwo() {
+	const lineTwos = [
+	'a', 'b', 'c'];
+	return lineTwos[Math.floor(Math.random() * lineTwos.length)];
+}
+
+function generateLineThree() {
+	const lineThrees = [
+	'a', 'b', 'c'];
+	return lineThrees[Math.floor(Math.random() * lineThrees.length)];
+}
+
 function generateLines() {
 	const lines = {
-		'lineOne': 'A',
-		'lineTwo': 'B',
-		'lineThree': 'C'
+		lineOne: generateLineOne();,
+		lineTwo: generateLineTwo();,
+		lineThree: generateLineThree();
 	};
-	return lines[Math.floor(Math.random() * lines.length)];
+	return lines;
 }
 
 function generateHaikuData() {
 	return {
 		title: generateTitle(),
-		lines: generateLines()
+		lines: generateLines().
+		author: generateAuthor(),
 	}
 }
 
@@ -66,7 +91,7 @@ describe('haiku API resource', function() {
 
 	describe('GET endpoint', function () {
 		it('should return all existing haikus', function() {
-			let rest;
+			let res;
 			return chai.request(app)
 			.get('./haikus')
 			.then(function(_res) {
@@ -95,7 +120,7 @@ describe('haiku API resource', function() {
 					res.body.forEach(function(haiku) {
 						haiku.should.be.a('object');
 						haiku.should.include.keys(
-							'title', 'lines', 'created');
+							'title', 'lines', 'author');
 					});
 					resHaiku = res.body[0];
 					console.log(resHaiku);
@@ -107,6 +132,7 @@ describe('haiku API resource', function() {
 				});
 		});
 	});
+
 	describe('POST endpoint', function() {
 		it('succesfully updated database with new post', function() {
 			const newHaiku = generateHaikuData();
@@ -146,7 +172,7 @@ describe('haiku API resource', function() {
 			return Haiku
 				.findOne()
 				.then(function(haiku){
-					updateDate.id=haiku.id;
+					updateData.id=haiku.id;
 					return chai.request(app)
 						.put(`/haikus/${haiku.id}`)
 						.send(updateData);
@@ -171,7 +197,7 @@ describe('haiku API resource', function() {
 			.findOne()
 			.then(function(_haiku){
 				haiku = _haiku;
-				return chai.reqeust(app).delete(`haikus/${haiku.id}`);
+				return chai.request(app).delete(`haikus/${haiku.id}`);
 			})
 			.then(function(res){
 				res.should.have.status(204);
