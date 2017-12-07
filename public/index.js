@@ -2,8 +2,17 @@ var syllablesFirstLine = 0;
 var syllablesSecondLine = 0;
 var syllablesThirdLine = 0;
 
+$('#instructionButton').on('click', function(event){
+	$(this).parent().addClass('hidden');
+})
+
+
+function disableFields() {
 $('#secondLine').prop('disabled', true);
 $('#thirdLine').prop('disabled', true); 
+$('#post').prop('disabled',true);
+}
+
 
 function addTextAreaCallback(textArea, callback, delay) {
     var timer = null;
@@ -30,7 +39,6 @@ function doAjaxFirstStuff() {
 	for (i=0; i<firstLine.length; i++) {
 		getFirstLineSyllables(firstLine[i]);
 	}
-	checkFirstLine(syllablesFirstLine);
 }
 
 function doAjaxSecondStuff() {
@@ -39,7 +47,6 @@ function doAjaxSecondStuff() {
 	for (i=0; i<secondLine.length; i++) {
 		getSecondLineSyllables(secondLine[i]);
 	}
-	checkSecondLine(syllablesSecondLine);
 }
 
 function doAjaxThirdStuff() {
@@ -48,7 +55,6 @@ function doAjaxThirdStuff() {
 	for (i=0; i<thirdLine.length; i++) {
 		getThirdLineSyllables(thirdLine[i]);
 	}
-	checkThirdLine(syllablesThirdLine);
 }
 
 function getFirstLineSyllables(word) {
@@ -63,7 +69,10 @@ function getFirstLineSyllables(word) {
 		console.log(a);
 		syllablesFirstLine += a.syllables.count;
 		console.log(syllablesFirstLine);
-	});
+		if (syllablesFirstLine == 5) {
+			checkFirstLine(syllablesFirstLine);
+		}
+	})
 }
 
 function getSecondLineSyllables(word) {
@@ -77,6 +86,9 @@ function getSecondLineSyllables(word) {
 	}).done(function(a){
 		console.log(a);
 		syllablesSecondLine += a.syllables.count;
+		if (syllablesSecondLine == 7) {
+			checkSecondLine(syllablesSecondLine);
+		}
 	});
 }
 
@@ -91,32 +103,36 @@ function getThirdLineSyllables(word) {
 	}).done(function(a){
 		console.log(a);
 		syllablesThirdLine += a.syllables.count;
+		if (syllablesThirdLine == 5) {
+			checkThirdLine(syllablesThirdLine);
+		}
 	});
 }
 
-function checkFirstLine(line) {
-	if (line = 5) {
+function checkFirstLine() {
+	if (syllablesFirstLine == 5) {
 		alert('syllables achieved. compose second line');
 		$('#secondLine').prop('disabled',false);
 	}
 }
 
 function checkSecondLine(line) {
-	if (line = 7) {
-		alert('syllables achieved, compose third line')
-		$('#thirdLine').prop('disabled',false);
+	if (line == 7) {
+		alert('syllables achieved, compose third line');
+		$('#thirdLine').prop('disabled', false);
 	}
 }
 
 function checkThirdLine(line) {
-	if (line = 5) {
+	if (line == 5) {
 		alert('syllables achieved. you win');
-		$('#compositionForm').append(`
-			<button id='post' type='post'>send this haiku to the masses</button>`);
+		$('#post').prop('disabled', false).removeClass('inactive');
 	}
 }
 
 $(document).ready(getHaikus());
+	
+
 
 function getHaikus() {
 	$.ajax({
@@ -131,18 +147,23 @@ function getHaikus() {
 
 function displayGottenHaikus(data) {
 	console.log(data);
+	$('#log').html('');
 		for (i=0;i<data.length;i++) {
 			$('#log').append(`
 				<div class='wholeShebang'>
-				<p class='postedTitle'>title: ${data[i].title}</p>
-				<p class='postedAuthor'>author: ${data[i].author}</p>
-				<p class='postedHaikuLineOne'>${data[i].lines.lineOne}</p>
-				<p class='postedHaikuLineTwo'>${data[i].lines.lineTwo}</p>
-				<p class='postedHaikuLineThree'${data[i].lines.lineThree}</p>
-				<p class='votes'></p>
-				<button class='delete' data-id='${data[i].id}'>trash this haiku</button>
-				<button class='vote' data-votes=0>vote up</button>
-				<button class='edit'>edit</button>
+					<p class='postedTitle'><span class='postedTitleData'>${data[i].title}</span></p>
+					<p class='postedAuthor'>by: <span class='postedAuthorData'>${data[i].author}</span></p>
+					<div class='postedHaiku'>
+						<p class='postedHaikuLineOne'>${data[i].lines.lineOne}</p>
+						<p class='postedHaikuLineTwo'>${data[i].lines.lineTwo}</p>
+						<p class='postedHaikuLineThree'>${data[i].lines.lineThree}</p>
+					</div>
+					<p class='voteCount'>score: <span class='votes'></span></p>
+					<div class='wholeShebangButtons'>
+						<button class='delete hidden' data-id='${data[i].id}'>trash this haiku</button>
+						<button class='vote' data-votes=0>give hai-5</button>
+						<button class='edit hidden' data-id='${data[i].id}'>edit</button>
+					</div>
 				</div>
 				`);}
 }
@@ -154,33 +175,58 @@ $('#log').on('click', '.vote', function(event) {
 	votes += 1;
 	console.log(votes);
 	$(this).data('votes', votes);
-	$(this).siblings('.votes').html(votes);
+	$(this).parent('.wholeShebangButtons').parent('.wholeShebang').find('.votes').html(votes);
 })
 
-$('#compositionForm').on('click', '#post', function(event) {
+
+
+$('#compositionForm').submit(function(event) {
 	event.preventDefault();
-	let title = $(this).parent().find('#title').val();
-	let author = $(this).parent().find('#author').val();
-	let lineOne = $(this).parent().find('#firstLine').val();
-	let lineTwo = $(this).parent().find('#secondLine').val();
-	let lineThree = $(this).parent().find('#thirdLine').val();
-	let datas = {
-		"title": title,
-		"author": author,
-		"lines": {
-			"lineOne": lineOne,
-			"lineTwo": lineTwo,
-			"lineThree": lineThree
-		}
+	if (!$('#title').val()) {
+		alert('add a title!');
 	}
-	$.ajax({
-		url:'/haikus',
-		type: 'POST',
-    contentType: 'application/json; charset=utf-8',
-    data: JSON.stringify(datas),
-	});
-	getHaikus();
+	else if (!$('#author').val()) {
+		alert('add an author!');
+	}
+	else if(syllablesFirstLine !== 5) {
+		alert('recompose first line to have 5 syllables!');
+	}
+	else if(syllablesSecondLine !== 7) {
+		alert('recompose second line to have 7 syllables!');
+	}
+	else if(syllablesThirdLine !==5) {
+		alert('recompose third line to have 5 syllables!');
+	}
+	else {
+		let title = $(this).parent().find('#title').val();
+		let author = $(this).parent().find('#author').val();
+		let lineOne = $(this).parent().find('#firstLine').val();
+		let lineTwo = $(this).parent().find('#secondLine').val();
+		let lineThree = $(this).parent().find('#thirdLine').val();
+		let datas = {
+			"title": title,
+			"author": author,
+			"lines": {
+				"lineOne": lineOne,
+				"lineTwo": lineTwo,
+				"lineThree": lineThree
+			}
+		}
+		$.ajax({
+			url:'/haikus',
+			type: 'POST',
+	    contentType: 'application/json; charset=utf-8',
+	    data: JSON.stringify(datas),
+		});
+		getHaikus();
+		$('#compositionForm').each(function(){
+			this.reset();
+		})
+		disableFields();
+	}
 });
+
+$(disableFields());
 
 $('#log').on('click', '.delete', function(event) {
 	event.preventDefault();
@@ -195,26 +241,53 @@ $('#log').on('click', '.delete', function(event) {
 $('#log').on('click', '.edit', function(event){
 	event.preventDefault();
 	let id = $(this).data('id');
-	let title = $(this).parent().find('.postedTitle').text();
-	let author = $(this).parent().find('.postedAuthor').val();
-	let firstLine = $(this).parent().find('.postedHaikuLineOne').val();
-	let secondLine = $(this).parent().find('.postedHaikuLineTwo').val();
-	let thirdLine = $(this).parent().find('.postedHaikuLineThree').val();
+	let title = $(this).parent().parent().find('.postedTitleData').text();
+	let author = $(this).parent().parent().find('.postedAuthorData').text();
+	let firstLine = $(this).parent().parent().find('.postedHaikuLineOne').text();
+	let secondLine = $(this).parent().parent().find('.postedHaikuLineTwo').text();
+	let thirdLine = $(this).parent().parent().find('.postedHaikuLineThree').text();
 	$(this).closest('.wholeShebang').html(`
-		<input class='title' value='${title}'>
-		<button type='put'>update this haiku</button>
-		`)
-
+		<input class='editTitle' value='${title}'>
+		<input class='editAuthor' value='${author}'>
+		<input class='editLineOne' value='${firstLine}'>
+		<input class='editLineTwo' value='${secondLine}'>
+		<input class='editLineThree' value='${thirdLine}'>
+		<button type='put' class='put' data-id='${id}'>update this haiku</button>
+		`);
 })
 
-// $('#postHaiku').on('click', function() {
-// 	$.ajax({
-// 		method: 'POST',
-// 		url: 
-// 	});
+$('#log').on('click', '.put', function(event){
+	event.preventDefault();
+	let id = $(this).data('id');
+	console.log(id);
+	let title = $(this).parent().parent().find('.editTitle').val();
+	let author = $(this).parent().parent().find('.editAuthor').val();
+	let firstLine = $(this).parent().find('.editLineOne').val();
+	let secondLine = $(this).parent().find('.editLineTwo').val();
+	let thirdLine = $(this).parent().find('.editLineThree').val();
+	let datas = {
+		"id": id,
+		"title": title,
+		"author": author,
+		"lines": {
+			"lineOne": firstLine,
+			"lineTwo": secondLine,
+			"lineThree": thirdLine
+		}
+	};
+	$.ajax({
+		type: 'put', 
+		url: '/haikus/' + id,
+		dataType: 'json',
+		contentType: "application/json; charset=utf-8",
+    data : JSON.stringify(datas)
+	});
+	getHaikus();
+});
+
+
+
+// $('#log').on('click', '.put', function() {
+
 // })
 
-
-
-// $('#editHaiku').on('click', function {
-// })

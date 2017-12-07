@@ -4,18 +4,24 @@
 	<title>
 	</title>
 	<link rel="stylesheet" type="text/css" href="index.css">
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 </head>
 <body id='container'>
-	<header id='header'>
-		<p>haikuna matata</p>
+	
+	<header id='header'><div id='instructions'>
+		<p>To submit a haiku, all fields must have input. Some common words will not work with this API. Find a list below. Haiku structure is 5 syllables for the first line, 7 syllables for the second, and 5 for the last. Thanks for visiting!</p>
+		<button id='instructionButton'>hut, hut, haiku!</button>
+	</div>
+		<p id='headerName'>haikuna matata</p>
 	</header>
 	<div id='composition'>
 		<form id='compositionForm'>
-			<p class='label'>title:</p><input type='text' id='title' placeholder='ex. some haiku'><br>
-			<p class='label'>author:</p><input type='text' id='author' placeholder='your name here'><br>
-			<p class='label'>first line:</p><input type='text' id='firstLine' placeholder='first line here'><br>
-			<p class='label'>second line:</p><input type='text' id='secondLine' placeholder='second line here'><br>
-			<p class='label'>third line:</p><input type='text' id='thirdLine' placeholder='third line here'><br>
+			<p class='label'>title:</p><input type='text' id='title' placeholder='title'><br>
+			<p class='label'>author:</p><input type='text' id='author' placeholder='your name'><br>
+			<p class='label'>first line:</p><input type='text' id='firstLine' placeholder='five syllables'><br>
+			<p class='label'>second line:</p><input type='text' id='secondLine' placeholder='seven syllables'><br>
+			<p class='label'>third line:</p><input type='text' id='thirdLine' placeholder='five syllables'><br>
+			<button id='post' type='submit' class='inactive'>send this haiku to the masses</button>
 		</form>
 	</div>
 	<div id='log'></div>

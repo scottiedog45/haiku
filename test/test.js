@@ -106,8 +106,82 @@ describe('haiku API resource', function() {
 					resHaiku.lines.should.equal(haiku.lines);
 				});
 		});
-});
+	});
+	describe('POST endpoint', function() {
+		it('succesfully updated database with new post', function() {
+			const newHaiku = generateHaikuData();
+			return chai.request(app)
+				.post('/haikus')
+				.send(newHaiku)
+				.then(function(res){
+					res.should.have.status(201);
+					res.should.be.json;
+					res.body.should.be.a('object');
+					res.body.should.include.keys(
+						'title', 'author', 'lines', 'id');
+					res.body.title.should.equal(newHaiku.title);
+					res.body.id.should.not.be.null;
+					res.body.lines.should.equal(newHaiku.lines);
+					res.body.author.should.equal(newHaiku.author);
+					return Haiku.findById(res.body.id);
+				})
+				.then(function(haiku){
+					haiku.title.should.equal(newHaiku.title);
+					haiku.lines.should.qual(newHaiku.lines);
+				});
+		});
+	});
 
+	describe('PUT endpoint', function() {
+		it('should update specified fields', function(){
+			const updateData = {
+				title: 'newTitle',
+				author: 'newAuthor',
+				lines: {
+					lineOne: 'lineOne',
+					lineTwo: 'lineTwo',
+					lineThree: 'lineThree'
+				}
+			};
+			return Haiku
+				.findOne()
+				.then(function(haiku){
+					updateDate.id=haiku.id;
+					return chai.request(app)
+						.put(`/haikus/${haiku.id}`)
+						.send(updateData);
+				})
+				.then(function(res){
+					res.should.have.status(204);
+					return Haiku.findById(updateData.id);
+				})
+				.then(function(haiku){
+					haiku.title.should.equal(updateData.title);
+					haiku.author.should.equal(updateData.author);
+					haiku.lines.should.equal(updateData.lines);
+				});
+		});
+	});
+
+	describe('DELETE endpoint', function() {
+		it('should delete a blogpost by id', function()  {
+			let haiku;
+
+			return Haiku
+			.findOne()
+			.then(function(_haiku){
+				haiku = _haiku;
+				return chai.reqeust(app).delete(`haikus/${haiku.id}`);
+			})
+			.then(function(res){
+				res.should.have.status(204);
+				return Haiku.findById(haiku.id);
+			})
+			.then(function(_haiku){
+				should.not.exist(_haiku);
+			});
+		});
+	});
 });
 
 

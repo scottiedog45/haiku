@@ -1,29 +1,116 @@
+body {
+	margin: 0px;
+	font-family: 'PT Sans', sans-serif;
+}
+
+input {
+	height: 25px;
+    width: 300px;
+}
+
+button {
+	background-color: inherit;
+    color: #821122;
+    border-radius: 0px;
+    border: 0;
+}
+
+.inactive {
+	color: #CCC;
+}
+
 #container {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	grid-column-gap: 10px;
+	grid-template-rows: 1fr 10fr 1fr;
+	grid-column-gap: 0PX;
 	grid-template-areas: 
 	"header header"
 	"composition log"
-	"footer footer"
+	"footer footer";
+	color: #333333;
 }
 
 #header {
-	grid-area: header
+	grid-area: header;
+	background-color: #C59A6F;
+	text-align: right;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+#headerName {
+	font-size: 30px;
+	padding: 0px;
+	padding-right: 10px;
 }
 
 #composition {
-	grid-area: composition
+	grid-area: composition;
+	background-color: #CCCCCC;
 }
 
 #log {
-	grid-area: log
+	grid-area: log;
+	background-color: #CCCCCC;
 }
 
 #footer {
-	grid-area: footer
+	grid-area: footer;
+	background-color: #C59A6F;
 }
 
-.label {
-	display: inline;
+#compositionForm {
+	 
+    margin: 10px;
+    padding: 10px;
+    background-color: #FCFCFC;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.wholeShebang {
+	padding: 10px;
+	margin: 10px;
+	background-color: #FCFCFC;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.wholeShebangButtons {
+	text-align: center;
+}
+
+#post {
+	margin-top: 20px;
+	}
+
+.postedTitleData {
+	font-size: 25px;
+}
+
+.postedAuthor {
+	font-size:15px;
+}
+
+.postedHaiku {
+	text-align: center;
+}
+
+.voteCount {
+	font-size: 14px;
+}
+
+#instructions {
+	z-index: 2;
+	position: fixed;
+	background-color: white;
+	width: 50%;
+  height: 50%;
+  padding: 10px;
+  top: 25%;
+  left: 25%;
+  text-align: center;
+  border: red;
+  border-style: solid;}
+
+.hidden {
+	display:none;
 }

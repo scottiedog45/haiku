@@ -57,6 +57,7 @@ app.post('/haikus', (req, res) => {
 });
 
 app.put('/haikus/:id', (req, res)=> {
+	console.log(req);
 	if (!(req.params.id && req.body.id && req.params.id === req.body.id)) {
 		res.status(400).json({
 			error: 'Request path id and request body id values must match'
