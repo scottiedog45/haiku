@@ -62,7 +62,7 @@ function generateLines() {
 function generateHaikuData() {
 	return {
 		title: generateTitle(),
-		lines: generateLines().
+		lines: generateLines(),
 		author: generateAuthor(),
 	}
 }
