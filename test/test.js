@@ -52,9 +52,9 @@ function generateLineThree() {
 
 function generateLines() {
 	const lines = {
-		lineOne: generateLineOne();,
-		lineTwo: generateLineTwo();,
-		lineThree: generateLineThree();
+		lineOne: generateLineOne(),
+		lineTwo: generateLineTwo(),
+		lineThree: generateLineThree()
 	};
 	return lines;
 }
