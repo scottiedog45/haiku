@@ -131,7 +131,7 @@ describe('haiku API resource', function() {
 					console.log(resHaiku);
 					console.log(Haiku);
 					resHaiku.title.should.equal(haiku.title);
-					resHaiku.lines.should.include(haiku.lines);
+					resHaiku.lines.should.have.members(haiku.lines);
 				});
 		});
 	});
@@ -188,7 +188,7 @@ describe('haiku API resource', function() {
 				.then(function(haiku){
 					haiku.title.should.equal(updateData.title);
 					haiku.author.should.equal(updateData.author);
-					haiku.lines.should.include(updateData.lines);
+					haiku.lines.should.have.keys(updateData.lines);
 				});
 		});
 	});
