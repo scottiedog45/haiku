@@ -131,8 +131,6 @@ function checkThirdLine(line) {
 }
 
 $(document).ready(getHaikus());
-	
-
 
 function getHaikus() {
 	$.ajax({
@@ -177,8 +175,6 @@ $('#log').on('click', '.vote', function(event) {
 	$(this).data('votes', votes);
 	$(this).parent('.wholeShebangButtons').parent('.wholeShebang').find('.votes').html(votes);
 })
-
-
 
 $('#compositionForm').submit(function(event) {
 	event.preventDefault();
@@ -284,10 +280,3 @@ $('#log').on('click', '.put', function(event){
 	});
 	getHaikus();
 });
-
-
-
-// $('#log').on('click', '.put', function() {
-
-// })
-
