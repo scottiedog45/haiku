@@ -131,7 +131,7 @@ describe('haiku API resource', function() {
 					console.log(resHaiku);
 					console.log(Haiku);
 					resHaiku.title.should.equal(haiku.title);
-					resHaiku.lines.should.equal(haiku.lines);
+					resHaiku.lines.should.include(haiku.lines);
 				});
 		});
 	});
@@ -150,13 +150,13 @@ describe('haiku API resource', function() {
 						'title', 'author', 'lines', 'id');
 					res.body.title.should.equal(newHaiku.title);
 					res.body.id.should.not.be.null;
-					res.body.lines.should.equal(newHaiku.lines);
+					res.body.lines.should.include(newHaiku.lines);
 					res.body.author.should.equal(newHaiku.author);
 					return Haiku.findById(res.body.id);
 				})
 				.then(function(haiku){
 					haiku.title.should.equal(newHaiku.title);
-					haiku.lines.should.equal(newHaiku.lines);
+					haiku.lines.should.include(newHaiku.lines);
 				});
 		});
 	});
@@ -187,7 +187,7 @@ describe('haiku API resource', function() {
 				.then(function(haiku){
 					haiku.title.should.equal(updateData.title);
 					haiku.author.should.equal(updateData.author);
-					haiku.lines.should.equal(updateData.lines);
+					haiku.lines.should.include(updateData.lines);
 				});
 		});
 	});
