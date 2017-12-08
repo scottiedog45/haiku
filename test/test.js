@@ -165,6 +165,7 @@ describe('haiku API resource', function() {
 		it('should update specified fields', function(){
 			const updateData = {
 				title: 'newTitle',
+				id: '',
 				author: 'newAuthor',
 				lines: {
 					lineOne: 'lineOne',
