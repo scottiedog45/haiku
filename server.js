@@ -65,7 +65,7 @@ app.put('/haikus/:id', (req, res)=> {
 	}
 
 	const updated = {};
-	const updateableFields = ['title', 'content', 'author'];
+	const updateableFields = ['title', 'content', 'author', 'lines'];
 	updateableFields.forEach(field=> {
 		if (field in req.body) {
 			updated[field]=req.body[field];
