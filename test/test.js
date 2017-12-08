@@ -197,7 +197,7 @@ describe('haiku API resource', function() {
 			.findOne()
 			.then(function(_haiku){
 				haiku = _haiku;
-				return chai.request(app).delete(`haikus/${haiku.id}`);
+				return chai.request(app).delete(`/haikus/${haiku.id}`);
 			})
 			.then(function(res){
 				res.should.have.status(204);
