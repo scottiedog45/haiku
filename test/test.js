@@ -63,7 +63,7 @@ function generateHaikuData() {
 	return {
 		title: generateTitle(),
 		lines: generateLines(),
-		author: generateAuthor(),
+		author: generateAuthor()
 	}
 }
 
@@ -127,6 +127,9 @@ describe('haiku API resource', function() {
 					return Haiku.findById(resHaiku.id);
 				})
 				.then(function(haiku){
+					console.log(haiku);
+					console.log(resHaiku);
+					console.log(Haiku);
 					resHaiku.title.should.equal(haiku.title);
 					resHaiku.lines.should.equal(haiku.lines);
 				});
