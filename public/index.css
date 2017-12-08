@@ -35,7 +35,6 @@ button {
 	grid-area: header;
 	background-color: #C59A6F;
 	text-align: right;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 #headerName {
@@ -113,4 +112,84 @@ button {
 
 .hidden {
 	display:none;
+}
+
+@media only screen 
+	and (min-device-width :	320px)
+	and (max-device-width: 736px) {
+
+		#container {
+			display: grid;
+			grid-template-areas: 
+			"header"
+			"composition"
+			"log"
+			"footer";
+			grid-template-columns: 1fr;
+			grid-template-rows: 1fr;
+		}
+
+		input {
+			width: 800px;
+    height: 100px;
+    font-size: 50px;
+		}
+
+		#compositionForm {
+			text-align: center;
+		}
+
+		#instructions{
+			font-size: 40px;
+		}
+
+		button {
+			font-size: 30px;
+		}
+
+		p {
+			font-size: 20px;
+		}
+
+}
+
+
+
+@media only screen
+	and (min-device-width: 768px)
+	and (max-device-width: 1366px) {
+
+		#container {
+			display: grid;
+			grid-template-areas: 
+			"header"
+			"composition"
+			"log"
+			"footer";
+			grid-template-columns: 1fr;
+			grid-template-rows: 1fr;
+		}
+
+		input {
+			width: 800px;
+    height: 100px;
+    font-size: 30px;
+		}
+
+		#compositionForm {
+			text-align: center;
+		}
+
+		#instructions{
+			font-size: 40px;
+		}
+
+		button {
+			font-size: 30px;
+		}
+
+		p {
+			font-size: 20px;
+		}
+
 }
