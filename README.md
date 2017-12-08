@@ -10,3 +10,6 @@ The "WORDS' Api used (https://www.wordsapi.com/) doesn't return syllables for ra
 
 'haikuna matata' submits an GET request to the WORDS api after a user has entered text, and determines the number of syllables in a line. 
 
+![Screenshot](landing.png)
+
+![Screenshot](app.png)
