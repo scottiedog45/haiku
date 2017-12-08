@@ -156,7 +156,7 @@ describe('haiku API resource', function() {
 				})
 				.then(function(haiku){
 					haiku.title.should.equal(newHaiku.title);
-					haiku.lines.should.qual(newHaiku.lines);
+					haiku.lines.should.equal(newHaiku.lines);
 				});
 		});
 	});
@@ -195,7 +195,6 @@ describe('haiku API resource', function() {
 	describe('DELETE endpoint', function() {
 		it('should delete a blogpost by id', function()  {
 			let haiku;
-
 			return Haiku
 			.findOne()
 			.then(function(_haiku){
