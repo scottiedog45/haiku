@@ -186,6 +186,9 @@ describe('haiku API resource', function() {
 					return Haiku.findById(updateData.id);
 				})
 				.then(function(haiku){
+					console.log('🌈')
+					console.log(haiku.title);
+					console.log(updateData.title);
 					haiku.title.should.equal(updateData.title);
 					haiku.author.should.equal(updateData.author);
 					haiku.lines.lineOne.should.equal(updateData.lines.lineOne);
