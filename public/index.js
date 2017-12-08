@@ -6,32 +6,29 @@ $('#instructionButton').on('click', function(event){
 	$(this).parent().addClass('hidden');
 })
 
-
 function disableFields() {
-$('#secondLine').prop('disabled', true);
-$('#thirdLine').prop('disabled', true); 
-$('#post').prop('disabled',true);
+	$('#secondLine').prop('disabled', true);
+	$('#thirdLine').prop('disabled', true); 
+	$('#post').prop('disabled',true);
 }
 
-
 function addTextAreaCallback(textArea, callback, delay) {
-    var timer = null;
-    textArea.onkeypress = function() {
-        if (timer) {
-            window.clearTimeout(timer);
-        }
-        timer = window.setTimeout( function() {
-            timer = null;
-            callback();
-        }, delay );
-    };
-    textArea = null;
+  var timer = null;
+	textArea.onkeypress = function() {
+	    if (timer) {
+	        window.clearTimeout(timer);
+	    }
+	    timer = window.setTimeout( function() {
+	        timer = null;
+	        callback();
+	    }, delay );
+	};
+	textArea = null;
 }
 
 addTextAreaCallback(document.getElementById("firstLine"), doAjaxFirstStuff, 4000);
 addTextAreaCallback(document.getElementById("secondLine"), doAjaxSecondStuff, 4000);
 addTextAreaCallback(document.getElementById("thirdLine"), doAjaxThirdStuff, 4000);
-
 
 function doAjaxFirstStuff() {
 	syllablesFirstLine = 0;
@@ -66,9 +63,7 @@ function getFirstLineSyllables(word) {
 			"Accept": "application/json"
 		}
 	}).done(function(a){
-		console.log(a);
 		syllablesFirstLine += a.syllables.count;
-		console.log(syllablesFirstLine);
 		if (syllablesFirstLine == 5) {
 			checkFirstLine(syllablesFirstLine);
 		}
@@ -84,7 +79,6 @@ function getSecondLineSyllables(word) {
 			"Accept": "application/json"
 		}
 	}).done(function(a){
-		console.log(a);
 		syllablesSecondLine += a.syllables.count;
 		if (syllablesSecondLine == 7) {
 			checkSecondLine(syllablesSecondLine);
@@ -101,7 +95,6 @@ function getThirdLineSyllables(word) {
 			"Accept": "application/json"
 		}
 	}).done(function(a){
-		console.log(a);
 		syllablesThirdLine += a.syllables.count;
 		if (syllablesThirdLine == 5) {
 			checkThirdLine(syllablesThirdLine);
@@ -144,7 +137,6 @@ function getHaikus() {
 }
 
 function displayGottenHaikus(data) {
-	console.log(data);
 	$('#log').html('');
 		for (i=0;i<data.length;i++) {
 			$('#log').append(`
@@ -169,9 +161,7 @@ function displayGottenHaikus(data) {
 $('#log').on('click', '.vote', function(event) {
 	event.preventDefault();
 	let votes = $(this).data('votes');
-	console.log(votes);
 	votes += 1;
-	console.log(votes);
 	$(this).data('votes', votes);
 	$(this).parent('.wholeShebangButtons').parent('.wholeShebang').find('.votes').html(votes);
 })
@@ -255,7 +245,6 @@ $('#log').on('click', '.edit', function(event){
 $('#log').on('click', '.put', function(event){
 	event.preventDefault();
 	let id = $(this).data('id');
-	console.log(id);
 	let title = $(this).parent().parent().find('.editTitle').val();
 	let author = $(this).parent().parent().find('.editAuthor').val();
 	let firstLine = $(this).parent().find('.editLineOne').val();
