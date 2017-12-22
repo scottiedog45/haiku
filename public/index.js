@@ -9,7 +9,7 @@ $('#instructionButton').on('click', function(event){
 function disableFields() {
 	$('#secondLine').prop('disabled', true);
 	$('#thirdLine').prop('disabled', true);
-	$('#post').prop('disabled',true);
+	$('#post').prop('disabled',true).addClass('inactive');
 }
 
 function addTextAreaCallback(textArea, callback, delay) {
