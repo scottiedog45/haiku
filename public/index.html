@@ -9,9 +9,17 @@
 <body id='container'>
 	<header id='header'>
 		<div id='instructions'>
-			<p>To submit a haiku, all fields must have input. Please begin by writing a line in the first input box. Approved lines will recieve an approval alert. Subsequent input boxes will activate once the previous line's syllables have been approved. Some common words will not work with this API. Find a list below. Haiku structure is 5 syllables for the first line, 7 syllables for the second, and 5 for the last. Thanks for visiting!</p>
+			<ul>
+				<li>To submit a haiku, all fields must have input. Please begin by writing a 5 syllable line in the first input box.
+				<li>Approved lines will recieve an approval alert.
+				<li>Subsequent input boxes will activate once the previous line's syllables have been approved.
+				<li>Some common words will not work with this API. Find a list below.
+				<li>Haiku structure is 5 syllables for the first line, 7 syllables for the second, and 5 for the last. Thanks for visiting!
+			</ul>
 			<p>unfunctioning word list: 'something', 'a', 'man'</p>
-			<button id='instructionButton'>hut, hut, haiku!</button>
+			<div id='instructionButtonWrapper'>
+				<button id='instructionButton'>hut, hut, haiku!</button>
+			</div>
 		</div>
 		<p id='headerName'>haikuna matata</p>
 	</header>

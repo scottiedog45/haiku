@@ -3,12 +3,12 @@ var syllablesSecondLine = 0;
 var syllablesThirdLine = 0;
 
 $('#instructionButton').on('click', function(event){
-	$(this).parent().addClass('hidden');
+	$(this).parent().parent().addClass('hidden');
 })
 
 function disableFields() {
 	$('#secondLine').prop('disabled', true);
-	$('#thirdLine').prop('disabled', true); 
+	$('#thirdLine').prop('disabled', true);
 	$('#post').prop('disabled',true);
 }
 
@@ -261,7 +261,7 @@ $('#log').on('click', '.put', function(event){
 		}
 	};
 	$.ajax({
-		type: 'put', 
+		type: 'put',
 		url: '/haikus/' + id,
 		dataType: 'json',
 		contentType: "application/json; charset=utf-8",

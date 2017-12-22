@@ -1,6 +1,7 @@
 body {
 	margin: 0px;
 	font-family: 'PT Sans', sans-serif;
+	box-sizing: border-box;
 }
 
 input {
@@ -10,13 +11,20 @@ input {
 
 button {
 	background-color: inherit;
-  color: #821122;
-  border-radius: 0px;
-  border: 0;
+    color: #821122;
+    border-radius: 0px;
+    border-style: solid;
+    height: 40px;
+    border-color: #821122;
+}
+
+li {
+	margin: 5px;
 }
 
 .inactive {
 	color: #CCC;
+	border-color: #CCC;
 }
 
 #container {
@@ -24,7 +32,7 @@ button {
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 1fr 10fr 1fr;
 	grid-column-gap: 0PX;
-	grid-template-areas: 
+	grid-template-areas:
 	"header header"
 	"composition log"
 	"footer footer";
@@ -34,13 +42,13 @@ button {
 #header {
 	grid-area: header;
 	background-color: #C59A6F;
-	text-align: right;
+	text-align: left;
 }
 
 #headerName {
 	font-size: 30px;
 	padding: 0px;
-	padding-right: 10px;
+	padding-left: 10px;
 }
 
 #composition {
@@ -97,29 +105,43 @@ button {
 }
 
 #instructions {
+	font-size: 17px;
 	z-index: 2;
 	position: fixed;
 	background-color: white;
-	width: 50%;
-  height: 50%;
   padding: 10px;
   top: 25%;
-  left: 25%;
-  text-align: center;
   border: red;
-  border-style: solid;}
+  border-style: solid;
+	box-sizing: border-box;
+	width: 100%;
+}
+
+#instructionButtonWrapper {
+	text-align: center;
+}
+
+#instructionButton {
+	border-width: 2px;
+  border-color: #821122;
+  border-style: solid;
+  height: 40px;
+  color: white;
+  background-color: #821122;
+
+}
 
 .hidden {
 	display:none;
 }
 
-@media only screen 
+@media only screen
 	and (min-device-width :	320px)
 	and (max-device-width: 736px) {
 
 		#container {
 			display: grid;
-			grid-template-areas: 
+			grid-template-areas:
 			"header"
 			"composition"
 			"log"
@@ -157,7 +179,7 @@ button {
 
 		#container {
 			display: grid;
-			grid-template-areas: 
+			grid-template-areas:
 			"header"
 			"composition"
 			"log"
