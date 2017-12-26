@@ -2,7 +2,6 @@ body {
 	margin: 0px;
 	font-family: 'PT Sans', sans-serif;
 	box-sizing: border-box;
-
 }
 
 input {
@@ -12,13 +11,12 @@ input {
 
 button {
 	border-style: solid;
-margin-left: 30px;
-height: 30px;
-background-color: inherit;
-color: white;
-letter-spacing: 1px;
-border-color: white;
-
+	margin-left: 30px;
+	height: 30px;
+	background-color: inherit;
+	color: white;
+	letter-spacing: 1px;
+	border-color: white;
 }
 
 li {
@@ -199,7 +197,6 @@ margin-top: 35px;
 }
 
 #instructions {
-
 	grid-area: instructions;
 	font-size: 14px;
   border: red;
@@ -209,6 +206,7 @@ margin-top: 35px;
 
 #instructionsWrapper {
 	margin-top: 10px;
+	margin-bottom: 10px;
 	width: 700px;
 	margin-left: auto;
 	margin-right: auto;
