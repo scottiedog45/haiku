@@ -31,7 +31,7 @@ li {
 #container {
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-template-rows: 800px 396px 582px 1fr;
+	grid-template-rows: 800px 420px 582px 1fr;
 	grid-column-gap: 0PX;
 	grid-template-areas:
 	"header"
@@ -206,7 +206,6 @@ margin-top: 35px;
 
 #instructionsWrapper {
 	margin-top: 10px;
-	margin-bottom: 10px;
 	width: 700px;
 	margin-left: auto;
 	margin-right: auto;
