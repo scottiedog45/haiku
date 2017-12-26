@@ -226,9 +226,9 @@ margin-top: 35px;
 			display: grid;
 			grid-template-areas:
 			"header"
+			"instructions"
 			"composition"
-			"log"
-			"footer";
+			"log";
 			grid-template-columns: 1fr;
 			grid-template-rows: 1fr;
 		}
@@ -264,9 +264,9 @@ margin-top: 35px;
 			display: grid;
 			grid-template-areas:
 			"header"
+			"instructions"
 			"composition"
-			"log"
-			"footer";
+			"log";
 			grid-template-columns: 1fr;
 			grid-template-rows: 1fr;
 		}
