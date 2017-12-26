@@ -2,6 +2,7 @@ body {
 	margin: 0px;
 	font-family: 'PT Sans', sans-serif;
 	box-sizing: border-box;
+
 }
 
 input {
@@ -10,12 +11,14 @@ input {
 }
 
 button {
-	background-color: inherit;
-    color: #821122;
-    border-radius: 0px;
-    border-style: solid;
-    height: 40px;
-    border-color: #821122;
+	border-style: solid;
+margin-left: 30px;
+height: 30px;
+background-color: inherit;
+color: white;
+letter-spacing: 1px;
+border-color: white;
+
 }
 
 li {
@@ -23,69 +26,160 @@ li {
 }
 
 .inactive {
-	color: #CCC;
-	border-color: #CCC;
+	color: #949393;
+	border-color: #949393;
 }
 
 #container {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 1fr 10fr 1fr;
+	grid-template-columns: 1fr;
+	grid-template-rows: 800px 396px 650px 1fr;
 	grid-column-gap: 0PX;
 	grid-template-areas:
-	"header header"
-	"composition log"
-	"footer footer";
-	color: #333333;
+	"header"
+	"instructions"
+	"composition"
+	"log";
+	color: black;
+	background-color: #0a2b1f;
 }
 
 #header {
 	grid-area: header;
-	background-color: #C59A6F;
-	text-align: left;
+	font-family: 'Caveat Brush', cursive;
+	width: 100%;
 }
 
 #headerName {
-	font-size: 30px;
+	text-align: center;
+	font-size: 400px;
 	padding: 0px;
-	padding-left: 10px;
+	background-color: inherit;
+	margin-bottom: 0px;
+	margin-top: 0;
+}
+
+#headerWrapper {
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	background-color: #008080;
+	height: 100%;
+}
+
+#headerKanji {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-column-gap: 0px;
+	grid-template-areas:
+	"instructionKanji writeKanji readKanji";
+	font-size: 100px;
+	text-align: center;
+}
+
+#linkInstructionKanji {
+	grid-area: instructionKanji;
+}
+
+#linkWriteKanji {
+	grid-area: writeKanji;
+}
+
+#linkReadKanji {
+	grid-area: readKanji;
+}
+
+#linkInstructionKanjiLabel, #linkWriteKanjiLabel, #linkReadKanjiLabel {
+	margin: 0px;
+	font-size: 20px;
+}
+
+#scroll {
+	margin-top:0px;
+}
+
+#backgroundNumbers {
+	font-family: 'Unica One', cursive;
+	z-index: -2;
+	font-size: 200px;
+	position: fixed;
+}
+
+#structure {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#instructionKanji {
+	margin-top: 10px;
+	text-align: center;
+    font-size: 30px;
+    background-color: pink;
+}
+
+#firstFive, #firstSeven, #secondFive {
+	font-size: 30px;
+}
+
+#writeKanji {
+	text-align: center;
+    font-size: 30px;
+    background-color: pink;
 }
 
 #composition {
 	grid-area: composition;
-	background-color: #CCCCCC;
+	text-align: center;
 }
 
-#log {
+#compositionFormTitle {
+	margin-bottom: 0px;
+	text-align: center;
+}
+
+#compositionWrapper {
+	margin-top: 10px;
+	display: inline-block;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	padding: 10px;
+	background-color: #008080;
+}
+
+#logWrapper {
 	grid-area: log;
-	background-color: #CCCCCC;
-}
-
-#footer {
-	grid-area: footer;
-	background-color: #C59A6F;
 }
 
 #compositionForm {
-  margin: 10px;
+
   padding: 10px;
-  background-color: #FCFCFC;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	text-align: center;
 }
+
+.compressed {}
 
 .wholeShebang {
 	padding: 10px;
-	margin: 10px;
-	background-color: #FCFCFC;
+	background-color: #008080;
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .wholeShebangButtons {
 	text-align: center;
 }
 
+#readKanji {
+	text-align: center;
+    font-size: 30px;
+    background-color: pink;
+}
+
 #post {
-	margin-top: 20px;
+	margin-left: 0px;
+margin-top: 35px;
 	}
 
 .postedTitleData {
@@ -105,30 +199,22 @@ li {
 }
 
 #instructions {
-	font-size: 17px;
-	z-index: 2;
-	position: fixed;
-	background-color: white;
-  padding: 10px;
-  top: 25%;
+
+	grid-area: instructions;
+	font-size: 14px;
   border: red;
-  border-style: solid;
 	box-sizing: border-box;
-	width: 100%;
+	margin: 0px;
 }
 
-#instructionButtonWrapper {
-	text-align: center;
-}
-
-#instructionButton {
-	border-width: 2px;
-  border-color: #821122;
-  border-style: solid;
-  height: 40px;
-  color: white;
-  background-color: #821122;
-
+#instructionsWrapper {
+	margin-top: 10px;
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	background-color: #008080;
 }
 
 .hidden {

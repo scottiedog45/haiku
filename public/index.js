@@ -2,122 +2,117 @@ var syllablesFirstLine = 0;
 var syllablesSecondLine = 0;
 var syllablesThirdLine = 0;
 
-$('#instructionButton').on('click', function(event){
-	$(this).parent().parent().addClass('hidden');
-})
-
 function disableFields() {
 	$('#secondLine').prop('disabled', true);
 	$('#thirdLine').prop('disabled', true);
+	$('#secondLineCheck').prop('disabled', true).addClass('inactive');
+	$('#thirdLineCheck').prop('disabled', true).addClass('inactive');
 	$('#post').prop('disabled',true).addClass('inactive');
 }
 
-function addTextAreaCallback(textArea, callback, delay) {
-  var timer = null;
-	textArea.onkeypress = function() {
-	    if (timer) {
-	        window.clearTimeout(timer);
-	    }
-	    timer = window.setTimeout( function() {
-	        timer = null;
-	        callback();
-	    }, delay );
-	};
-	textArea = null;
-}
-
-addTextAreaCallback(document.getElementById("firstLine"), doAjaxFirstStuff, 4000);
-addTextAreaCallback(document.getElementById("secondLine"), doAjaxSecondStuff, 4000);
-addTextAreaCallback(document.getElementById("thirdLine"), doAjaxThirdStuff, 4000);
-
 function doAjaxFirstStuff() {
 	syllablesFirstLine = 0;
-	let firstLine = $('#firstLine').val().split(' ');
+	let firstLine = (($('#firstLine').val()).replace(/[?<>.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")).replace(/\s{2,}/g," ").split(' ');
 	for (i=0; i<firstLine.length; i++) {
 		getFirstLineSyllables(firstLine[i]);
 	}
+	setTimeout(function(){
+		checkFirstLine(syllablesFirstLine);
+	}, 1250);
 }
 
 function doAjaxSecondStuff() {
 	syllablesSecondLine = 0;
-	let secondLine = $('#secondLine').val().split(' ');
+	let secondLine = (($('#secondLine').val()).replace(/[?<>.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")).replace(/\s{2,}/g," ").split(' ');
 	for (i=0; i<secondLine.length; i++) {
 		getSecondLineSyllables(secondLine[i]);
 	}
+	setTimeout(function(){
+		checkSecondLine(syllablesSecondLine);
+	}, 1250);
 }
 
 function doAjaxThirdStuff() {
 	syllablesThirdLine = 0;
-	let thirdLine = $('#thirdLine').val().split(' ');
+	let thirdLine = (($('#thirdLine').val()).replace(/[?<>.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")).replace(/\s{2,}/g," ").split(' ');
 	for (i=0; i<thirdLine.length; i++) {
 		getThirdLineSyllables(thirdLine[i]);
 	}
+	setTimeout(function(){
+		checkThirdLine(syllablesThirdLine);
+	}, 1250);
 }
 
 function getFirstLineSyllables(word) {
 	$.ajax({
-		url: 'https://wordsapiv1.p.mashape.com/words/' + word,
-		type: 'GET',
-		headers: {
-			"X-Mashape-Key": "HI4GY8BYhlmshTogKuD5FS3oxrS9p11KjoFjsnhwssCC3QXH1v",
-			"Accept": "application/json"
-		}
+		url: `https://www.dictionaryapi.com/api/v1/references/collegiate/xml/${word}?key=83b96293-c901-45d0-bc7a-cdc7584dd17b`,
+		type: 'GET'
 	}).done(function(a){
-		syllablesFirstLine += a.syllables.count;
-		if (syllablesFirstLine == 5) {
-			checkFirstLine(syllablesFirstLine);
-		}
-	})
+		console.log(a);
+		let b = a.getElementsByTagName("hw")[0].innerHTML.match(/[*]/g);
+		if (b===null) {
+			syllablesFirstLine += 1;
+		} else {
+		let c = (b.length + 1);
+		syllablesFirstLine += c;
+	}
+});
 }
 
 function getSecondLineSyllables(word) {
 	$.ajax({
-		url: 'https://wordsapiv1.p.mashape.com/words/' + word,
-		type: 'GET',
-		headers: {
-			"X-Mashape-Key": "HI4GY8BYhlmshTogKuD5FS3oxrS9p11KjoFjsnhwssCC3QXH1v",
-			"Accept": "application/json"
-		}
+		url: `https://www.dictionaryapi.com/api/v1/references/collegiate/xml/${word}?key=83b96293-c901-45d0-bc7a-cdc7584dd17b`,
+		type: 'GET'
 	}).done(function(a){
-		syllablesSecondLine += a.syllables.count;
-		if (syllablesSecondLine == 7) {
-			checkSecondLine(syllablesSecondLine);
-		}
+		let b = a.getElementsByTagName("hw")[0].innerHTML.match(/[*]/g);
+		if (b===null) {
+			syllablesSecondLine += 1;
+		} else {
+		let c = (b.length + 1);
+		syllablesSecondLine += c;
+	}
 	});
 }
 
 function getThirdLineSyllables(word) {
 	$.ajax({
-		url: 'https://wordsapiv1.p.mashape.com/words/' + word,
-		type: 'GET',
-		headers: {
-			"X-Mashape-Key": "HI4GY8BYhlmshTogKuD5FS3oxrS9p11KjoFjsnhwssCC3QXH1v",
-			"Accept": "application/json"
-		}
+		url: `https://www.dictionaryapi.com/api/v1/references/collegiate/xml/${word}?key=83b96293-c901-45d0-bc7a-cdc7584dd17b`,
+		type: 'GET'
 	}).done(function(a){
-		syllablesThirdLine += a.syllables.count;
-		if (syllablesThirdLine == 5) {
-			checkThirdLine(syllablesThirdLine);
-		}
+		let b = a.getElementsByTagName("hw")[0].innerHTML.match(/[*]/g);
+		if (b===null) {
+			syllablesThirdLine += 1;
+		} else {
+		let c = (b.length + 1);
+		syllablesThirdLine += c;
+	}
 	});
 }
 
-function checkFirstLine() {
-	if (syllablesFirstLine == 5) {
+function checkFirstLine(line) {
+		if (line !== 5) {
+			alert('syllables not achieved, rewrite!')
+	} else {
 		alert('syllables achieved. compose second line');
 		$('#secondLine').prop('disabled',false);
+		$('#secondLineCheck').removeClass('inactive').prop('disabled', false);
 	}
 }
 
 function checkSecondLine(line) {
-	if (line == 7) {
+	if (line !== 7) {
+		alert('incorrect number of syllables...');
+	} else {
 		alert('syllables achieved, compose third line');
 		$('#thirdLine').prop('disabled', false);
+		$('#thirdLineCheck').removeClass('inactive').prop('disabled', false);
 	}
 }
 
 function checkThirdLine(line) {
-	if (line == 5) {
+	if (line !== 5) {
+		alert('incorrect number of syllables...');
+	} else {
 		alert('syllables achieved. you win');
 		$('#post').prop('disabled', false).removeClass('inactive');
 	}
@@ -213,6 +208,21 @@ $('#compositionForm').submit(function(event) {
 });
 
 $(disableFields());
+
+$('#firstLineCheck').on('click', function(event) {
+	event.preventDefault();
+	doAjaxFirstStuff();
+});
+
+$('#secondLineCheck').on('click', function(event) {
+	event.preventDefault();
+	doAjaxSecondStuff();
+});
+
+$('#thirdLineCheck').on('click', function(event) {
+	event.preventDefault();
+	doAjaxThirdStuff();
+})
 
 $('#log').on('click', '.delete', function(event) {
 	event.preventDefault();
