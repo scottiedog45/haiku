@@ -318,6 +318,10 @@ margin-top: -109px;
 		p {
 			font-size: 20px;
 		}
+
+		.backgroundReadKanji {
+			margin-left: -11px;
+		}
 }
 
 @media only screen
