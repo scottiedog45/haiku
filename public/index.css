@@ -299,8 +299,20 @@ li {
 
 
 @media only screen
-	and (min-device-width :	320px)
+	and (min-device-width:	319px)
 	and (max-device-width: 736px) {
+
+		#container {
+			display: grid;
+			grid-template-areas:
+			"welcome"
+			"instructions"
+			"composition"
+			"log";
+			grid-template-columns: 1fr;
+			grid-template-rows: 1fr;
+		}
+
 
 		input {
 			width: 657px;
@@ -363,17 +375,6 @@ li {
 			font-size: 45px;
 			height: 130px;
 			width: 400px;
-		}
-
-		#container {
-			display: grid;
-			grid-template-areas:
-			"welcome"
-			"instructions"
-			"composition"
-			"log";
-			grid-template-columns: 1fr;
-			grid-template-rows: 1fr;
 		}
 
 		#post {
