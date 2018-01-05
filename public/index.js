@@ -120,6 +120,24 @@ function checkThirdLine(line) {
 
 $(document).ready(getHaikus());
 
+$('#welcomeHowToButton').on('click', function(event){
+	if (this.hash !== "") {
+		event.preventDefault();
+		$('html, body').animate({
+			scrollTop: $('#instructions').offset().top
+		}, 800);
+	}
+});
+
+$('#welcomeComposeButton').on('click', function(event){
+	if (this.hash !== "") {
+		event.preventDefault();
+		$('html, body').animate({
+			scrollTop: $('#composition').offset().top
+		}, 800);
+	}
+});
+
 function getHaikus() {
 	$.ajax({
 		type:'GET',
@@ -132,22 +150,26 @@ function getHaikus() {
 }
 
 function displayGottenHaikus(data) {
+	console.log(data);
 	$('#log').html('');
 		for (i=0;i<data.length;i++) {
 			$('#log').append(`
 				<div class='wholeShebang'>
-					<p class='postedTitle'><span class='postedTitleData'>${data[i].title}</span></p>
-					<p class='postedAuthor'>by: <span class='postedAuthorData'>${data[i].author}</span></p>
-					<div class='postedHaiku'>
-						<p class='postedHaikuLineOne'>${data[i].lines.lineOne}</p>
-						<p class='postedHaikuLineTwo'>${data[i].lines.lineTwo}</p>
-						<p class='postedHaikuLineThree'>${data[i].lines.lineThree}</p>
-					</div>
-					<p class='voteCount'>score: <span class='votes'></span></p>
-					<div class='wholeShebangButtons'>
-						<button class='delete hidden' data-id='${data[i].id}'>trash this haiku</button>
-						<button class='vote' data-votes=0>give hai-5</button>
-						<button class='edit hidden' data-id='${data[i].id}'>edit</button>
+				<p class='backgroundReadKanji'>読</p>
+					<div class='wholeShebangWrapper' id=${data[i].id}>
+						<p class='postedTitleData'>${data[i].title}</p>
+						<p class='postedAuthor'>by: <span class='postedAuthorData'>${data[i].author}</span></p>
+						<div class='postedHaiku'>
+							<p class='postedHaikuLineOne'>${data[i].lines.lineOne}</p>
+							<p class='postedHaikuLineTwo'>${data[i].lines.lineTwo}</p>
+							<p class='postedHaikuLineThree'>${data[i].lines.lineThree}</p>
+						</div>
+						<p class='voteCount'>score: <span class='votes'>${data[i].score}</span></p>
+						<div class='wholeShebangButtons'>
+							<button class='delete hidden' data-id='${data[i].id}'>trash this haiku</button>
+							<button class='vote' data-votes=${data[i].score}>give hai-5</button>
+							<button class='edit hidden' data-id='${data[i].id}'>edit</button>
+						</div>
 					</div>
 				</div>
 				`);}
@@ -157,8 +179,21 @@ $('#log').on('click', '.vote', function(event) {
 	event.preventDefault();
 	let votes = $(this).data('votes');
 	votes += 1;
+	let id = $(this).siblings('.edit').data('id');
+	console.log(id);
+	let data = {
+		"id": id,
+		"score": votes
+	}
+	$.ajax({
+		type: 'put',
+		url: '/haikus/' + id,
+		dataType: 'json',
+		contentType: "application/json; charset=utf-8",
+    data : JSON.stringify(data)
+	})
 	$(this).data('votes', votes);
-	$(this).parent('.wholeShebangButtons').parent('.wholeShebang').find('.votes').html(votes);
+	$(this).parent('.wholeShebangButtons').parent('.wholeShebangWrapper').find('.votes').html(votes);
 })
 
 $('#compositionForm').submit(function(event) {
@@ -191,19 +226,21 @@ $('#compositionForm').submit(function(event) {
 				"lineOne": lineOne,
 				"lineTwo": lineTwo,
 				"lineThree": lineThree
-			}
+			},
+			"score": 0
 		}
 		$.ajax({
 			url:'/haikus',
 			type: 'POST',
-	    contentType: 'application/json; charset=utf-8',
-	    data: JSON.stringify(datas),
+	    contentType: 'application/json',
+	    data: JSON.stringify(datas)
 		});
-		getHaikus();
 		$('#compositionForm').each(function(){
 			this.reset();
-		})
+		});
 		disableFields();
+		getHaikus();
+		$('html,body').animate({scrollTop: $(document).height()}, 800);
 	}
 });
 

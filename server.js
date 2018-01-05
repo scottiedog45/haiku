@@ -46,6 +46,7 @@ app.post('/haikus', (req, res) => {
 				lineTwo: req.body.lines.lineTwo,
 				lineThree: req.body.lines.lineThree
 			},
+			score: 0,
 			author: req.body.author
 		})
 		.then(
@@ -65,7 +66,7 @@ app.put('/haikus/:id', (req, res)=> {
 	}
 
 	const updated = {};
-	const updateableFields = ['title', 'content', 'author', 'lines'];
+	const updateableFields = ['title', 'content', 'author', 'lines', 'score'];
 	updateableFields.forEach(field=> {
 		if (field in req.body) {
 			updated[field]=req.body[field];

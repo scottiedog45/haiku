@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
 	<title>
 	</title>
 	<link rel="stylesheet" type="text/css" href="index.css">
@@ -9,32 +10,25 @@
 	<link href="https://fonts.googleapis.com/css?family=Unica+One" rel="stylesheet">
 </head>
 <body id='container'>
-	<header id='header'>
-		<div id='headerWrapper'>
-			<p id='headerName'>hai·koo</p>
-			<div id='headerKanji'>
-				<div id='linkInstructionKanji'>
-					<a id='' href='#instructionKanji'>令</a>
-					<p id='linkInstructionKanjiLabel'>(instructions)</p>
-				</div>
-				<div id='linkWriteKanji'>
-					<a id='' href='#writeKanji'>書</a>
-					<p id='linkWriteKanjiLabel'>(write)</p>
-				</div>
-				<div id='linkReadKanji'>
-					<a id='' href='#readKanji'>読</a>
-					<p id='linkReadKanjiLabel'>(read)</p>
-				</div>
+	<div id='welcome'>
+		<div id='welcomeWrapper'>
+			<p id='backgroundWelcomeKanji'>迎</p>
+			<p id='welcomeName'>hai·koo</p>
+			<p id='instructionsWelcome'>
+				Hai·koo is a platform for haiku composition, submission, and appreciation.
+			</p>
+			<div id='welcomeButtonWrapper'>
+				<button id='welcomeHowToButton' href='#instructions'>How Do I Hai·koo?</button>
+				<button id='welcomeComposeButton' href=' '>Compose Your Haiku</button>
 			</div>
 		</div>
-	</header>
+	</div>
 	<div id='instructions'>
-		<div id='instructionKanji'>令</div>
+		<p id='backgroundInstructionsKanji'>誥</p>
 		<div id='instructionsWrapper'>
-		<p id='instructionsWelcome'>
-			Hai·koo is a platform for haiku composition, submission, and appreciation.
-		</p>
+			<p id='instructionsTitle'>How To Hai·koo:</p>
 		<ul>
+			<li>Scroll down and enter a haiku in the section below, one line in each input area.</li>
 			<li>A <a href='https://en.wikipedia.org/wiki/Haiku' target='_blank'>haiku</a> is a poem, structured as follows:
 				<div id='structure'>
 				 <span id='firstFive'>5</span> syllables for the first line,<br>
@@ -42,18 +36,19 @@
 					 and <span id='secondFive'>5</span> syllables for the last.<br>
 				</div>
 			<li>Subsequent inputs will activate once the previous line's syllables have been approved.
-			<li>This API is picky. Stick to English root words (run vs. running, bus vs. busses).
+			<li>This API is picky. Stick to single-syllabled English root words (run vs. running, bus vs. busses).
 			<li>The API isn't perfect, it thinks 'banana' is two syllables, and 'achieve' is one.
 			<li>Keep scrolling to see other haikus, and vote!
 		</ul>
 		</div>
 	</div>
 	<div id='composition'>
-		<div id='writeKanji'>書</div>
+		<p id='backgroundComposeKanji'>描</p>
 		<div id='compositionWrapper'>
+			<p id='compositionWrapperTitle'>Compose Your Haiku</p>
 		<form id='compositionForm'>
-			<p class='label'>title:</p><input type='text' id='title' placeholder='title'><br>
-			<p class='label'>author:</p><input type='text' id='author' placeholder='your name'><br>
+			<p class='label' id='compositionFormTitle'>title:</p><input type='text' id='title' placeholder='title'><br>
+			<p class='label'>author:</p><input type='text' id='author' placeholder='author'><br>
 			<p class='label'>first line:</p><input type='text' id='firstLine' placeholder='five syllables'><button id='firstLineCheck'>check line!</button><br>
 			<p class='label'>second line:</p><input type='text' id='secondLine' placeholder='seven syllables'><button id='secondLineCheck'>check line!</button><br>
 			<p class='label'>third line:</p><input type='text' id='thirdLine' placeholder='five syllables'><button id='thirdLineCheck'>check line!</button><br>
@@ -62,7 +57,6 @@
 	</div>
 	</div>
 	<div id='logWrapper'>
-		<div id='readKanji'>読</div>
 		<div id='log'>
 		</div>
 	</div>

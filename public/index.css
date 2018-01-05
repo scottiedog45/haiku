@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 body {
 	margin: 0px;
 	font-family: 'PT Sans', sans-serif;
@@ -6,21 +8,28 @@ body {
 
 input {
 	height: 25px;
-  width: 300px;
+  width: 415px;
 }
 
 button {
 	border-style: solid;
 	margin-left: 30px;
-	height: 30px;
+	height: 45px;
+	width: 115px;
+	font-size: 15px;
 	background-color: inherit;
 	color: white;
 	letter-spacing: 1px;
 	border-color: white;
 }
 
+ul {
+	list-style-position: inside;
+	padding-left: 0px;
+}
+
 li {
-	margin: 5px;
+	margin: 20px;
 }
 
 .inactive {
@@ -28,77 +37,179 @@ li {
 	border-color: #949393;
 }
 
+.wholeShebang {
+	color: white;
+	padding: 10px;
+	background-color: #0d3838;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wholeShebangWrapper {
+	position: relative;
+}
+
+.wholeShebangButtons {
+	text-align: center;
+}
+
+.postedTitleData {
+	font-size: 60px;
+	text-align: center;
+	margin: 0px;
+}
+
+.postedAuthor {
+	font-size:15px;
+	text-align: center;
+}
+
+.postedHaiku {
+	text-align: center;
+	font-size: 25px;
+}
+
+.postedHaikuLineOne {
+	margin-bottom: 0px;
+}
+
+.postedHaikuLineTwo {
+	margin-top: 10px;
+	margin-bottom: 0px;
+}
+
+.postedHaikuLineThree {
+	margin-top: 10px;
+}
+
+.backgroundReadKanji {
+	text-align: center;
+margin: 0px;
+color: white;
+opacity: .03;
+font-size: 321px;
+position: absolute;
+padding: 0px;
+width: 100%;
+margin-top: -47px;
+}
+
+.voteCount {
+	font-size: 14px;
+	text-align: center;
+}
+
+.vote {
+	margin-left: 0px;
+	z-index: 2;
+	position: relative;
+}
+
+.hidden {
+	display:none;
+}
+
+
+
 #container {
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-template-rows: 800px 420px 582px 1fr;
 	grid-column-gap: 0PX;
 	grid-template-areas:
 	"header"
+	"welcome"
 	"instructions"
 	"composition"
 	"log";
 	color: black;
-	background-color: #0a2b1f;
 }
 
-#header {
-	grid-area: header;
-	font-family: 'Caveat Brush', cursive;
-	width: 100%;
-}
-
-#headerName {
+#welcomeName {
+	padding-top: 190px;
+	color: white;
 	text-align: center;
-	font-size: 400px;
-	padding: 0px;
-	background-color: inherit;
+	font-size: 70px;
 	margin-bottom: 0px;
-	margin-top: 0;
+	margin-top: 0px;
 }
 
-#headerWrapper {
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	background-color: #008080;
+#welcomeWrapper {
+	background-color: #3d138a;
 	height: 100%;
 }
 
-#headerKanji {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 0px;
-	grid-template-areas:
-	"instructionKanji writeKanji readKanji";
-	font-size: 100px;
+#welcome {
+	grid-area: welcome;
+	height: 700px;
+}
+
+#welcomeButtonWrapper {
+	display: flex;
+	justify-content: space-between;
+}
+
+#backgroundWelcomeKanji {
 	text-align: center;
+margin: 0px;
+color: white;
+opacity: .09;
+font-size: 706px;
+position: absolute;
+padding: 0px;
+width: 100%;
+margin-top: -146px;
 }
 
-#linkInstructionKanji {
-	grid-area: instructionKanji;
+#instructionsWelcome {
+	font-size: 19px;
+  text-align: center;
+  color: white;
+	margin-bottom: 44px;
 }
 
-#linkWriteKanji {
-	grid-area: writeKanji;
+#welcomeComposeButton, #welcomeHowToButton {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+    height: 70px;
+    width: 300px;
 }
 
-#linkReadKanji {
-	grid-area: readKanji;
+#instructions {
+	grid-area: instructions;
+	background-color: #542e98a3;
 }
 
-#linkInstructionKanjiLabel, #linkWriteKanjiLabel, #linkReadKanjiLabel {
+#instructionsWrapper {
+	text-align: center;
+	padding-top: 100px;
+	padding-bottom: 100px;
+	color: white;
+	font-size: 18px;
+	box-sizing: border-box;
 	margin: 0px;
-	font-size: 20px;
+	position: relative;
+
 }
 
-#scroll {
-	margin-top:0px;
+#backgroundInstructionsKanji {
+	text-align: center;
+margin: 0px;
+color: white;
+opacity: .06;
+font-size: 706px;
+position: absolute;
+padding: 0px;
+width: 100%;
+margin-top: -125px;
+
 }
 
-#backgroundNumbers {
-	font-family: 'Unica One', cursive;
-	z-index: -2;
-	font-size: 200px;
-	position: fixed;
+#instructionsTitle{
+	font-size: 40px;
+	text-align: center;
+	margin-top: 0px;
 }
 
 #structure {
@@ -107,116 +218,66 @@ li {
 	margin-bottom: 20px;
 }
 
-#instructionKanji {
-	margin-top: 10px;
-	text-align: center;
-    font-size: 30px;
-    background-color: pink;
-}
-
 #firstFive, #firstSeven, #secondFive {
-	font-size: 30px;
-}
-
-#writeKanji {
-	text-align: center;
-    font-size: 30px;
-    background-color: pink;
+	font-size: 48px;
 }
 
 #composition {
 	grid-area: composition;
 	text-align: center;
+	background-color: #003f80;
 }
 
 #compositionFormTitle {
-	margin-bottom: 0px;
-	text-align: center;
+	margin-top: 0px;
 }
 
 #compositionWrapper {
-	margin-top: 10px;
+	font-size: 20px;
+	color: white;
+	width: 100%;
 	display: inline-block;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	padding: 10px;
-	background-color: #008080;
+	padding-top: 50px;
+	padding-bottom: 50px;
+
+	position: relative;
 }
 
-#logWrapper {
-	grid-area: log;
-}
-
-#compositionForm {
-
-  padding: 10px;
-	text-align: center;
-}
-
-.compressed {}
-
-.wholeShebang {
-	padding: 10px;
-	background-color: #008080;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-	margin-top: 10px;
+#compositionWrapperTitle {
+	font-size: 40px;
+	margin-top: 0px;
 	margin-bottom: 10px;
 }
 
-.wholeShebangButtons {
+#backgroundComposeKanji {
 	text-align: center;
+margin: 0px;
+color: white;
+opacity: .07;
+font-size: 706px;
+position: absolute;
+padding: 0px;
+width: 100%;
+margin-top: -109px;
 }
 
-#readKanji {
-	text-align: center;
-    font-size: 30px;
-    background-color: pink;
+#compositionForm {
+  padding: 10px;
+	text-align: left;
+	display: inline-block;
 }
 
 #post {
 	margin-left: 0px;
-margin-top: 35px;
+	margin-top: 35px;
+	width: 250px;
 	}
 
-.postedTitleData {
-	font-size: 25px;
-}
+	#logWrapper {
+		grid-area: log;
+	}
 
-.postedAuthor {
-	font-size:15px;
-}
 
-.postedHaiku {
-	text-align: center;
-}
-
-.voteCount {
-	font-size: 14px;
-}
-
-#instructions {
-	grid-area: instructions;
-	font-size: 14px;
-  border: red;
-	box-sizing: border-box;
-	margin: 0px;
-}
-
-#instructionsWrapper {
-	margin-top: 10px;
-	width: 700px;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 10px;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	background-color: #008080;
-}
-
-.hidden {
-	display:none;
-}
 
 @media only screen
 	and (min-device-width :	320px)

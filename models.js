@@ -8,7 +8,9 @@ const haikuSchema = mongoose.Schema({
 		lineTwo: {type: String},
 		lineThree: {type: String}
 	},
+	score: {type: Number},
 	created: {type: Date, default: Date.now}
+
 });
 
 haikuSchema.methods.apiRepr = function() {
@@ -17,6 +19,7 @@ haikuSchema.methods.apiRepr = function() {
 		author: this.author,
 		lines: this.lines,
 		created: this.created,
+		score: this.score,
 		id: this.id
 	};
 }
