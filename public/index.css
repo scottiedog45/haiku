@@ -43,6 +43,8 @@ li {
 	background-color: #0d3838;
   margin-left: auto;
   margin-right: auto;
+	padding-top: 50px;
+	padding-bottom: 50px;
 }
 
 .wholeShebangWrapper {
@@ -116,7 +118,6 @@ margin-top: -47px;
 	grid-template-columns: 1fr;
 	grid-column-gap: 0PX;
 	grid-template-areas:
-	"header"
 	"welcome"
 	"instructions"
 	"composition"
@@ -134,13 +135,15 @@ margin-top: -47px;
 }
 
 #welcomeWrapper {
-	background-color: #3d138a;
+	position: relative;
+	z-index: 2;
 	height: 100%;
 }
 
 #welcome {
 	grid-area: welcome;
 	height: 700px;
+	background-color: #3d138a;
 }
 
 #welcomeButtonWrapper {
@@ -149,7 +152,7 @@ margin-top: -47px;
 }
 
 #backgroundWelcomeKanji {
-	text-align: center;
+text-align: center;
 margin: 0px;
 color: white;
 opacity: .09;
@@ -286,7 +289,7 @@ margin-top: -109px;
 		#container {
 			display: grid;
 			grid-template-areas:
-			"header"
+			"welcome"
 			"instructions"
 			"composition"
 			"log";
@@ -324,7 +327,7 @@ margin-top: -109px;
 		#container {
 			display: grid;
 			grid-template-areas:
-			"header"
+			"welcome"
 			"instructions"
 			"composition"
 			"log";
