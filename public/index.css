@@ -19,10 +19,15 @@
 		}
 }
 
+/*available fonts*/
+/*text: font-family: 'Montserrat', sans-serif;
+buttons: font-family: 'Raleway', sans-serif;
+headline: font-family: 'Poiret One', cursive;*/
+
 body {
 	margin: 0px;
-	font-family: 'PT Sans', sans-serif;
 	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
 }
 
 input {
@@ -40,6 +45,7 @@ button {
 	color: white;
 	letter-spacing: 1px;
 	border-color: white;
+	font-family: 'Raleway', sans-serif;
 }
 
 ul {
@@ -112,7 +118,7 @@ li {
 	position: absolute;
 	padding: 0px;
 	width: 98%;
-	margin-top: -47px;
+	margin-top: -55px;
 }
 
 .voteCount {
@@ -148,6 +154,7 @@ li {
 	font-size: 70px;
 	margin-bottom: 0px;
 	margin-top: 0px;
+	font-family: 'Poiret One', cursive;
 }
 
 #welcomeWrapper {
@@ -386,7 +393,7 @@ li {
 		}
 
 		#welcomeHowToButton, #welcomeComposeButton {
-			font-size: 45px;
+			font-size: 20px;
 			height: 130px;
 			width: 308px;
 		}
