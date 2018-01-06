@@ -300,7 +300,7 @@ li {
 
 @media only screen
 	and (min-device-width:	319px)
-	and (max-device-width: 736px) {
+	and (max-device-width: 767px) {
 
 		#container {
 			display: grid;
@@ -343,19 +343,17 @@ li {
 		}
 
 		.backgroundReadKanji {
-			margin-left: -11px;
-		}
-
-		.backgroundReadKanji {
-			margin-top: 24px;
-			display: block;
-			margin-left: 175px;
+			display: none;
 		}
 
 		.vote {
 			display: block;
 			margin-left: auto;
 			margin-right: auto;
+		}
+
+		.voteCount, .postedAuthor {
+			font-size: 30px;
 		}
 
 		#welcome {
@@ -375,18 +373,16 @@ li {
 		}
 
 		#backgroundWelcomeKanji {
-			font-size: 713px;
+			font-size: 706px;
 			margin-top: 173px;
 		}
 
 		#backgroundInstructionsKanji {
 			margin-top: 173px;
-			margin-left: 23px;
 		}
 
 		#backgroundComposeKanji {
 			margin-top: 173px;
-			margin-left: 22px;
 		}
 
 		#welcomeHowToButton, #welcomeComposeButton {
@@ -438,7 +434,7 @@ li {
 }
 
 @media only screen
-	and (min-device-width: 768px)
+	and (min-device-width: 737px)
 	and (max-device-width: 1366px) {
 
 		input {
@@ -463,6 +459,10 @@ li {
 
 		.label {
 			margin-bottom: 5px;
+		}
+
+		.backgroundReadKanji {
+
 		}
 
 		#post {
